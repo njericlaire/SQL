@@ -1,0 +1,48 @@
+SELECT UPPER('hello')
+
+
+SELECT UPPER(EnglishProductName) EnglishProductName FROM DimProduct
+
+SELECT LOWER('HELLO')
+
+
+SELECT LOWER(EnglishProductName) EnglishProductName FROM DimProduct
+
+SELECT LEFT('HELLO',2)
+
+SELECT LEFT(EnglishProductName,4) EnglishProductName FROM DimProduct
+
+SELECT RIGHT('HELLO',2)
+
+SELECT RIGHT(EnglishProductName,4) EnglishProductName FROM DimProduct
+
+SELECT SUBSTRING('HELLO',2,4)
+
+SELECT SUBSTRING(EnglishProductName,4,2) EnglishProductName FROM DimProduct
+
+SELECT LEN('HELLO')--GIVES YOU THE TOTAL NUMBER OF CHARACTERS INCLUDING SPACES
+
+SELECT LEN(EnglishProductName) EnglishProductName FROM DimProduct
+
+SELECT TRIM(' HELLO')--REMOVE SPACES AT THE START AND AT THE END
+
+SELECT LTRIM(' HELLO ')--REMOVE SPACES AT THE  LEFT SIDE
+
+SELECT RTRIM(' HELLO ')--REMOVE SPACES AT THE  RIGHT SIDE
+
+SELECT REPLACE(' HELLO ','L','X')
+
+SELECT REPLACE(' HELLO ','L','XY')
+
+SELECT REPLACE(' HELLO ','EL','X')
+
+SELECT REPLACE(' HELLO ','L','')
+
+SELECT REVERSE('HELLO')
+
+SELECT REVERSE(EnglishProductName) EnglishProductName FROM DimProduct
+
+SELECT STUFF('HELLO',2,3,'X')
+
+
+
