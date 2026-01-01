@@ -1,0 +1,70 @@
+--SUB QUERY- ONE QUERY INSIDE ANOTHER
+SELECT MAX(SalesAmount) FROM FactInternetSales
+
+SELECT * FROM FactInternetSales
+WHERE SalesAmount=(SELECT MAX(SalesAmount) FROM FactInternetSales)--SUBQUERY SHAOULD BE ENCLOSED IN BRACKETS
+
+
+SELECT * FROM FactInternetSales
+WHERE SalesAmount=(SELECT MIN(SalesAmount) FROM FactInternetSales)
+
+--EXTRACT THE ROWS FROM FACTINTERNET SALES WHERE THE PRODUCT IS RED
+--WE CAN USE INNER JOIN OR SUBQUERY
+SELECT F.* FROM FactInternetSales F JOIN DimProduct P
+ON F.ProductKey=P.ProductKey
+WHERE P.Color='RED'
+
+SELECT * FROM FactInternetSales
+WHERE ProductKey NOT IN(SELECT ProductKey FROM DimProduct WHERE Color='RED')
+
+--USING SUBQUERY WITH UPDATE STATEMENTS
+SELECT * INTO DimEmps FROM DimEmployee
+
+SELECT * FROM DimEmps
+
+UPDATE DimEmps SET BaseRate=BaseRate*1.1
+
+--IF WE WANT TO UPDATE ONLY PEOPLE FROM A SPECIFIC REGION WE CAN USE JOIN OR SUBQUERY
+SELECT * FROM DimSalesTerritory
+
+UPDATE DimEmps SET BaseRate = BaseRate * 1.1
+FROM DimEmps E JOIN DimSalesTerritory S 
+ON E.SalesTerritoryKey =S.SalesTerritoryKey
+WHERE S.SalesTerritoryCountry='CANADA'
+
+UPDATE DimEmps SET BaseRate = BaseRate * 1.1
+WHERE SalesTerritoryKey 
+IN(SELECT SalesTerritoryKey FROM DimSalesTerritory
+WHERE SalesTerritoryCountry='CANADA')
+
+SELECT AVG(TotalTransactions) FROM(
+SELECT CustomerKey, COUNT(*) TotalTransactions FROM FactInternetSales
+GROUP BY CustomerKey)T--THIS IS CALLED A DERIVED TABLE
+
+SELECT * FROM FactInternetSales
+SELECT * FROM FactInternetSales
+WHERE ProductKey IN(SELECT ProductKey FROM DimProduct WHERE Color='RED')
+
+SELECT * FROM FactInternetSales
+WHERE EXISTS(SELECT ProductKey FROM DimProduct WHERE Color='RED')--SEARCH FOR EXISTENCE OF THE RECORD INSIDE THE SUB QUERY. RETURNS TRUE SO WE GET ALL THE ROWS INSTEAD OF THE RED ONES
+
+SELECT * FROM FactInternetSales
+WHERE NOT EXISTS(SELECT ProductKey FROM DimProduct WHERE Color='RED')--RETURNS FALSE SO WE DONT GET ANY OF THE ROWS 
+
+SELECT * FROM FactInternetSales F
+WHERE EXISTS(SELECT ProductKey  
+FROM DimProduct P 
+WHERE F.ProductKey=P.ProductKey 
+AND Color='RED')--CORE RELATED SUBQUERY REFERENCING THE OUTER TABLE IN THE INNER SUBQUERY 
+
+--SUBQUERY SCENARIO
+SELECT YEAR(OrderDate) OrderYear,SUM(SalesAmount) TotalSales,
+FORMAT(SUM(SalesAmount)/(SELECT SUM(SalesAmount) FROM FactInternetSales),'P') CONTRIBUTION
+FROM FactInternetSales
+GROUP BY YEAR(OrderDate)
+
+
+
+
+
+
