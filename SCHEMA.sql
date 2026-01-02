@@ -1,0 +1,13 @@
+CREATE SCHEMA SALES
+
+CREATE TABLE SALES.SalesTran(
+Orderid INT,
+OrderDate datetime,
+qty int
+)
+
+SELECT * FROM SALES.SalesTran
+
+DROP SCHEMA SALES
+
+DROP TABLE SALES.SalesTran
