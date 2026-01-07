@@ -1,0 +1,37 @@
+declare @X INT=0
+
+WHILE @X<10-- LOOP WILL RUN UNTIL THE CONDITION IS TRUE
+	BEGIN
+	SET @X=@X+1
+	PRINT(@X)
+	END
+
+
+
+
+-------------------------------
+
+declare @X INT=0
+
+WHILE @X<10-- LOOP WILL RUN UNTIL THE CONDITION IS TRUE
+	BEGIN
+	SET @X=@X+1
+	IF @X<6
+	   PRINT(@X)
+	END
+
+
+---------------------------------------------------
+
+declare @X INT=0
+
+WHILE @X<10-- LOOP WILL RUN UNTIL THE CONDITION IS TRUE
+	BEGIN
+	SET @X=@X+1
+	IF @X<6
+	   PRINT(@X)
+	ELSE
+		BREAK---KEYWORD USED TO TERMINATE THE LOOP ONCE THE CONDITION IS MET
+	END
+
+ 
